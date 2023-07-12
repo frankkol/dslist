@@ -1,6 +1,7 @@
 package com.frankr.dslist.dto;
 
 import com.frankr.dslist.entities.Game;
+import com.frankr.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -20,6 +21,15 @@ public class GameMinDTO {
 		imgUrl = entity.getImgUrl();
 		shortDescription = entity.getShortDescription();
 		longDescription = entity.getLongDescription();
+	}
+	
+	public GameMinDTO(GameMinProjection projection) {
+		id = projection.getId();
+		title = projection.getTitle();
+		year = projection.getYear();
+		imgUrl = projection.getImgUrl();
+		shortDescription = projection.getShortDescription();
+		longDescription = projection.getLongDescription();
 	}
 
 	public Long getId() {
