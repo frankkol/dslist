@@ -27,6 +27,11 @@ public class GameService {
 	}
 	
 	@Transactional(readOnly = true)
+	public void creat(Game game) {
+		gameRepository.save(game);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<GameMinDTO> searchByList(Long listId) {
 		List<GameMinProjection> result = gameRepository.searchByList(listId);
 		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
