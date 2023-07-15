@@ -26,9 +26,25 @@ public class GameService {
 		return dto;
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional
 	public void creat(Game game) {
 		gameRepository.save(game);
+	}
+
+	@Transactional
+	public void edit(Long id, Game body) {
+		
+		String title = body.getTitle();
+		Integer year = body.getYear();
+		String genre = body.getGenre();
+		String platforms = body.getPlatforms();
+		Double score = body.getScore();
+		String imgUrl = body.getImgUrl();
+		String shortDescription = body.getShortDescription();
+		String longDescription = body.getLongDescription();
+		
+		gameRepository.edit(id, title, year, genre, platforms, score, imgUrl, shortDescription, longDescription);
+		
 	}
 	
 	@Transactional(readOnly = true)

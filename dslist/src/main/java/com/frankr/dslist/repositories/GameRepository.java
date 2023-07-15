@@ -3,6 +3,7 @@ package com.frankr.dslist.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.frankr.dslist.entities.Game;
@@ -20,4 +21,8 @@ public interface GameRepository extends JpaRepository<Game, Long>{
 				""")
 	List<GameMinProjection> searchByList(Long listId);
 	
+	@Modifying
+	@Query(nativeQuery = true, value = "update tb_game g set g.title = :title, g.game_year = :year, g.genre = :genre, g.platforms = :platforms, g.score = :score, g.img_url = :imgUrl, g.short_description = :shortDescription, g.long_description = :longDescription where g.id = :id")
+	void edit(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
+			String shortDescription, String longDescription);
 }
